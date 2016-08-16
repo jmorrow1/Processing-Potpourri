@@ -34,3 +34,12 @@ static float quantize(float val, float min, float quantum) {
     val = (int)val;
     return val * quantum;
 }
+
+static float avg(float... xs) {
+    float acc = 0;
+    for (float x : xs) {
+        acc += x;
+    }
+    acc /= xs.length;
+    return acc;
+}
