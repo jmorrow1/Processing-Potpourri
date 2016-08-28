@@ -35,11 +35,21 @@ static float quantize(float val, float min, float quantum) {
     return val * quantum;
 }
 
+//Averages a sequence of floating point numbers
 static float avg(float... xs) {
     float acc = 0;
     for (float x : xs) {
         acc += x;
     }
     acc /= xs.length;
+    return acc;
+}
+
+//Sums a sequence of floating point numbers
+static float sum(float... xs) {
+    float acc = 0;
+    for (float x : xs) {
+        acc += x;
+    }
     return acc;
 }
