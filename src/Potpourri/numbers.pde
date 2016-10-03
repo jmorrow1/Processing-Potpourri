@@ -32,7 +32,7 @@ static float quantize(float val, float min, float quantum) {
     val -= min;
     val /= quantum;
     val = (int)val;
-    return val * quantum;
+    return min + val * quantum;
 }
 
 //Averages a sequence of floating point numbers
@@ -52,4 +52,29 @@ static float sum(float... xs) {
         acc += x;
     }
     return acc;
+}
+
+//computes the greatest common denominator of a and b
+static int gcd(int a, int b) {
+    int c;
+    while ( a != 0 ) {
+       c = a;
+       a = b%a;
+       b = c;
+    }
+    return b;
+}
+
+//computes the least common multiple of m and n
+static int lcm(int m, int n) {
+    int lcm = (n == m || n == 1) ? m :(m == 1 ? n : 0);
+    if (lcm == 0) {
+       int mm = m, nn = n;
+       while (mm != nn) {
+           while (mm < nn) { mm += m; }
+           while (nn < mm) { nn += n; }
+       }  
+       lcm = mm;
+    }
+    return lcm;
 }
