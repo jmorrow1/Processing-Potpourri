@@ -78,3 +78,16 @@ static int lcm(int m, int n) {
     }
     return lcm;
 }
+
+//returns a String representation of an integer n in a given base
+static String convertBase(int n, int base) {
+    int q = n / base;
+    int r = n % base;
+    
+    if (q == 0) {
+        return Integer.toString(r);
+    }
+    else {
+        return convertBase(q, base) + Integer.toString(r);
+    }
+}
