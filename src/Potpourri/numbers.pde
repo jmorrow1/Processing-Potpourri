@@ -54,6 +54,11 @@ static float sum(float... xs) {
     return acc;
 }
 
+//Maps a domain to a range, but, unlike Processing's map function, guarantees that the result will be constrained to the range.
+static float constrainedMap(float x, float x1, float x2, float y1, float y2) {
+    return constrain(map(x, x1, x2, y1, y2), y1, y2);
+}
+
 //computes the greatest common denominator of a and b
 static int gcd(int a, int b) {
     int c;
