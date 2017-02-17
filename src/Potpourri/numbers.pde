@@ -1,11 +1,29 @@
+//Maps a value x from the range [min,max] to [0,1]
+static float normalize(float x, float min, float max) {
+  return (x-min) / (max-min);
+}
+
+//Wraps a value so it ends up within the range of min to max
+static float wrap(float value, float min, float max) {
+  return min + remainder(value - min, max - min);
+}
+
 //Calculates the remainder of num / denom.
 //Differs from the % operator in that negative values wrap around
 //e.g. remainder(-1, 5) evaluates to 4, remainder(-2, 5) evaluates to 3, ...
 //Useful for implementing world wrapping (like in Pac-Man)
 static float remainder(float num, float denom) {
-  if (0 <= num && num < denom) return num;
-  else if (num > 0) return num % denom;
-  else return denom - ((-num) % denom);
+  if (0 <= num && num < denom) {
+    return num;
+  } else if (num > 0) {
+    return num % denom;
+  } else {
+    float result = denom - ((-num) % denom);
+    if (result == denom) {
+      result = 0;
+    }
+    return result;
+  }
 }
 
 //Calculates the remainder of num / denom.
@@ -13,9 +31,17 @@ static float remainder(float num, float denom) {
 //e.g. remainder(-1, 5) evaluates to 4, remainder(-2, 5) evaluates to 3, ...
 //Useful for implementing world wrapping (like in Pac-Man) 
 static int remainder(int num, int denom) {
-  if (0 <= num && num < denom) return num;
-  else if (num > 0) return num % denom;
-  else return denom - ((-num) % denom);
+  if (0 <= num && num < denom) {
+    return num;
+  } else if (num > 0) {
+    return num % denom;
+  } else {
+    int result = denom - ((-num) % denom);
+    if (result == denom) {
+      result = 0;
+    }
+    return result;
+  }
 }
 
 //Converts a float coordinate to an integer coordinate.
@@ -97,5 +123,32 @@ static String convertBase(int n, int base) {
     return Integer.toString(r);
   } else {
     return convertBase(q, base) + Integer.toString(r);
+  }
+}
+
+//Re-maps the range of an array of floats to [0,1]
+static void normalize(float[] xs) {
+  if (xs.length == 0) {
+    return;
+  } else {
+    float min = xs[0];
+    float max = xs[0];
+    for (int i=1; i<xs.length; i++) {
+      if (xs[i] < min) {
+        min = xs[i];
+      } else if (xs[i] > max) {
+        max = xs[i];
+      }
+    }
+
+    if (min == max) {
+      for (int i=0; i<xs.length; i++) {
+        xs[i] = 0;
+      }
+    } else {
+      for (int i=0; i<xs.length; i++) {
+        xs[i] = map(xs[i], min, max, 0, 1);
+      }
+    }
   }
 }

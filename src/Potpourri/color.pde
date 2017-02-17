@@ -5,7 +5,7 @@ float colorDist(int c1, int c2, int mode) {
   if (mode == RGB) {
     return dist(red(c1), green(c1), blue(c1), red(c2), green(c2), blue(c2));
   }
-  else { //mode == HSB
+  else /*if (mode == HSB)*/ {
     return dist(hue(c1), saturation(c1), brightness(c1), hue(c2), saturation(c2), brightness(c2));
   }
 }
