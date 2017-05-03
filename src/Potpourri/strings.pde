@@ -2,8 +2,8 @@
 //a measure of the "distance" between two strings.
 //returns an integer representing the number of edits
 //(deletions, insertions, or substitutions) required to
-//transform one string into the other, a measure of 
-int stringDist(String s, String t) {
+//transform one string into the other.
+int editDist(String s, String t) {
   s = " " + s;
   t = " " + t;
 

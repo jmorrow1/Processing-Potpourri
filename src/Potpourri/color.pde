@@ -1,4 +1,4 @@
-//Computes the distance between the two colors (c1 and c2)
+//Computes the Euclidean distance between the two colors (c1 and c2)
 //within the given color space (mode),
 //which should be either HSB or RGB
 float colorDist(int c1, int c2, int mode) {
